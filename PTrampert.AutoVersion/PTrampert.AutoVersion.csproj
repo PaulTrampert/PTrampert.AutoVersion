@@ -2,10 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <Authors>Paul Trampert</Authors>
+    <Description>Adds a build task that generates the version prefix and suffix from the git repository info.</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/PaulTrampert/PTrampert.AutoVersion</PackageProjectUrl>
+    <PackageTags>built;tasks;versioning;git</PackageTags>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PTrampert.ExeInvoke" Version="2.0.0" />
+    <Content Include="build\PTrampert.AutoVersion.targets;$(OutputPath)\**\*;" Exclude="$(OutputPath)\**\*.pdb">
+      <Pack>true</Pack>
+      <PackagePath>build</PackagePath>
+    </Content>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.1.0-preview-000545-01" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.1.0-preview-000545-01" />
+    <PackageReference Include="PTrampert.ExeInvoke" Version="2.0.2" />
   </ItemGroup>
 
 </Project>
