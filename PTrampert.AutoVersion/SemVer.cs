@@ -33,6 +33,20 @@ namespace PTrampert.AutoVersion
             };
         }
 
+        public static bool TryParse(string str, out SemVer semver)
+        {
+            try
+            {
+                semver = Parse(str);
+                return true;
+            }
+            catch (Exception)
+            {
+                semver = null;
+                return false;
+            }
+        }
+
         public override string ToString()
         {
             var result = $"{Major}.{Minor}.{Patch}";
