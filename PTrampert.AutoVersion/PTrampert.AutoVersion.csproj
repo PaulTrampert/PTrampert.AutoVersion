@@ -7,11 +7,10 @@
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PaulTrampert/PTrampert.AutoVersion</PackageProjectUrl>
     <PackageTags>built;tasks;versioning;git</PackageTags>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="build\PTrampert.AutoVersion.targets;$(OutputPath)\**\*;" Exclude="$(OutputPath)\**\*.pdb">
+    <Content Include="build\**\*;$(OutputPath)\publish\**\*">
       <Pack>true</Pack>
       <PackagePath>build</PackagePath>
     </Content>
@@ -23,4 +22,7 @@
     <PackageReference Include="PTrampert.ExeInvoke" Version="2.0.3" />
   </ItemGroup>
 
+  <Target Name="GatherAllDependencies" BeforeTargets="Pack">
+    <CallTarget Targets="Publish" />
+  </Target>
 </Project>
