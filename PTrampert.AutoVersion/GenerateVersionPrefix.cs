@@ -20,13 +20,20 @@ namespace PTrampert.AutoVersion
                 StandardOutReader = async (stream) =>
                 {
                     var describeString = await stream.ReadToEndAsync();
-                    var semver = SemVer.Parse(describeString);
-                    if (semver.PreReleaseVersion)
+                    SemVer semver = null;
+                    if (SemVer.TryParse(describeString, out semver))
                     {
-                        semver.Patch++;
-                        semver.Suffix = null;
+                        if (semver.PreReleaseVersion)
+                        {
+                            semver.Patch++;
+                            semver.Suffix = null;
+                        }
+                        VersionPrefix = semver.ToString();
                     }
-                    VersionPrefix = semver.ToString();
+                    else
+                    {
+                        Log.LogWarning("Could not set version prefix from `git describe --tags`.");
+                    }
                 }
             };
 
