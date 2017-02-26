@@ -2,8 +2,9 @@
 <Project>
   <UsingTask TaskName="PTrampert.AutoVersion.GenerateVersionPrefix" AssemblyFile="PTrampert.AutoVersion.dll" />
 
-  <Target Name="GenerateVersionPrefix" BeforeTargets="BeforeBuild" Condition="$(VersionPrefix) == ''">
-    <GenerateVersionPrefix>
+  <Target Name="GenerateVersionPrefix" BeforeTargets="BeforeBuild">
+    <GenerateVersionPrefix
+      VersionPrefix="$(VersionPrefix)">
       <Output TaskParameter="VersionPrefix" PropertyName="VersionPrefix" />
     </GenerateVersionPrefix>
   </Target>
