@@ -1,3 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Project>
+  <UsingTask TaskName="PTrampert.AutoVersion.GenerateVersionPrefix" AssemblyFile="PTrampert.AutoVersion.dll" />
+
+  <Target Name="GenerateVersionPrefix" BeforeTargets="BeforeBuild" Condition="$(VersionPrefix) == ''">
+    <GenerateVersionPrefix>
+      <Output TaskParameter="VersionPrefix" PropertyName="VersionPrefix" />
+    </GenerateVersionPrefix>
+  </Target>
 </Project>
